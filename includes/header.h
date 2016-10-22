@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 12:10:11 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/21 17:06:33 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/22 11:29:34 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,13 @@ typedef struct	s_pipe
 
 typedef struct	s_lemin
 {
-	int		nb_lem;
-	t_pipe	*l_pipe;
-	t_box	*l_box;
+	int			nb_lem;
+	t_bool		stat_start;
+	t_bool		stat_end;
+	int			start;
+	int			end;
+	t_pipe		*l_pipe;
+	t_box		*l_box;
 }				t_lemin;
 
 #endif
