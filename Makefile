@@ -6,7 +6,7 @@
 #    By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/21 12:14:25 by cchameyr          #+#    #+#              #
-#    Updated: 2016/10/21 15:09:29 by cchameyr         ###   ########.fr        #
+#    Updated: 2016/10/22 12:31:49 by cchameyr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ FILES =				main.c \
 
 SRCS =				$(addprefix srcs/, $(FILES))
 
-OBJS =				$(addprefix objs/, $(FILES_SWAP:.c=.o))
+OBJS =				$(addprefix objs/, $(FILES:.c=.o))
 
 CC =				gcc
 
@@ -25,7 +25,7 @@ LIBFT =				libft/libft.a
 
 DEBUGSEGFAULT =		-fsanitize=address
 
-FLAGS =				-Wall -Wextra -Werror $(DEBUGSEGFAULT)
+FLAGS =#				-Wall -Wextra -Werror $(DEBUGSEGFAULT)
 
 RM =				rm -rf
 
@@ -40,7 +40,7 @@ $(OBJS):
 
 objs_mv:
 	@mkdir objs
-	@mv $(FILES:.c=.o)
+	@mv $(FILES:.c=.o) ./objs/
 
 objs_rm:
 	@$(RM) objs
