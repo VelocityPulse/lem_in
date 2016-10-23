@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 12:10:04 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/23 12:27:34 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/23 15:59:53 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void		help_get_map(t_lemin *lemin, char *line)
 		if (!ft_strncmp(line, "#", 1))
 			;
 		else if (is_pipe(line))
-			add_pipe(&lemin->l_pipe, lemin->l_box);
+			add_pipe(lemin, line, &lemin->l_pipe);
 		else
 			break;
 		ft_memdel((void **)&line);
@@ -66,7 +66,7 @@ static void		get_map(t_lemin *lemin)
 	while (get_next_line(0, &line) > 0)
 	{
 		if (!ft_strncmp(line, "##start", 8))
-			lemin->start = add_box(lemin, &lemin->l_pipe);
+			lemin->start = add_box(lemin, &lemin->l_box);
 		else if (!ft_strncmp(line, "##end", 6))
 			lemin->end = add_box(lemin, &lemin->l_box);
 		else if (is_box(line) == _SUCCESS_)
