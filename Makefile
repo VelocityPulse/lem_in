@@ -6,12 +6,14 @@
 #    By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/21 12:14:25 by cchameyr          #+#    #+#              #
-#    Updated: 2016/10/22 12:31:49 by cchameyr         ###   ########.fr        #
+#    Updated: 2016/10/23 12:52:11 by cchameyr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FILES =				main.c \
-					get_next_line.c
+					get_next_line.c \
+					checks.c \
+					list_box.c
 
 SRCS =				$(addprefix srcs/, $(FILES))
 

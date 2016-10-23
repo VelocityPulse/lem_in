@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 12:10:11 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/22 14:53:43 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/23 12:27:37 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,12 @@ typedef struct	s_lemin
 	t_pipe		*l_pipe;
 	t_box		*l_box;
 }				t_lemin;
+
+int				is_pipe(char *line);
+int				is_box(char *line);
+
+int				add_box(t_lemin *lemin, t_box **begin);
+
+
 
 #endif
