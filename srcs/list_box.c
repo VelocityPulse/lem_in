@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 12:14:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/23 16:10:27 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/24 16:00:12 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void				free_lbox(t_box **begin)
 	while (list)
 	{
 		*begin = list->next;
-		ft_memdel((void **)&(*list));
+		ft_memdel((void **)&list);
 		list = *begin;
 	}
 	*begin = NULL;

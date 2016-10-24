@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 15:39:02 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/23 16:11:38 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/24 16:00:43 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,18 @@ void			add_pipe(t_lemin *lemin, char *line, t_pipe **begin)
 			list = list->next;
 		list->next = new_pipe(pipe);
 	}
+}
+
+void			free_lpipe(t_pipe **begin)
+{
+	t_pipe		*list;
+
+	list = *begin;
+	while (list)
+	{
+		*begin = list->next;
+		ft_memdel((void **)&list);
+		list = *begin;
+	}
+	*begin = NULL;
 }
