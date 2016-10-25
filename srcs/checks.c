@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 15:15:46 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/25 11:37:04 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/25 15:51:06 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ int				is_pipe(char *line)
 
 	part = 1;
 	i = -1;
+	if (ft_strlen(line) == 0)
+	{
+		return (_ERROR_);
+	}
 	while (line[++i])
 	{
 		if (ft_isdigit(line[i]))
@@ -32,7 +36,6 @@ int				is_pipe(char *line)
 		else
 			return (_ERROR_);
 	}
-	YOLO
 	return (_SUCCESS_);
 }
 
