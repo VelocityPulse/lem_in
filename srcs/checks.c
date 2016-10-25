@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 15:15:46 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/24 16:10:11 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/25 11:37:04 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int				is_pipe(char *line)
 		else
 			return (_ERROR_);
 	}
+	YOLO
 	return (_SUCCESS_);
 }
 

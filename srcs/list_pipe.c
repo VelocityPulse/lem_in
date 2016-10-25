@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 15:39:02 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/24 16:00:43 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/25 10:47:11 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void			add_pipe(t_lemin *lemin, char *line, t_pipe **begin)
 	pipe[1] = ft_atoi(str[1]);
 	ft_memdel2((void ***)&str);
 	if (pipe[0] == pipe[1])
-		exit_lemin(lemin);
+		exit_lemin(lemin, _ERROR_);
 	if (check_duplicate_pipe(*begin, pipe) == _ERROR_)
-		exit_lemin(lemin);
+		exit_lemin(lemin, _ERROR_);
 	if (*begin == NULL)
 		*begin = new_pipe(pipe);
 	else

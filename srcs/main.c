@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 12:10:04 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/24 16:13:46 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/25 13:11:42 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,43 @@ static void		nb_lem(t_lemin *lemin)
 	line = NULL;
 	while (get_next_line(0, &line) > 0)
 	{
-		if (ft_strisdigit(line) == 1)
+		if (ft_strisdigit(line) == 1 && ft_strlen(line) > 0)
+		{
 			lemin->nb_lem = ft_atoi(line);
-		else if (!ft_strncmp(line, "#", 1))
+			break;
+		}
+		else if (!ft_strncmp(line, "#", 1) && line[1] != '#')
 			;
 		else
-		{
-			ft_putstr("ERROR\n");
-			_exit(0);
-		}
+			exit_lemin(lemin, _ERROR_);
 		ft_memdel((void **)&line);
 	}
 	ft_memdel((void **)&line);
+}
+
+static int		get_start_end(t_lemin *lemin, char *line)
+{
+	if (!ft_strncmp(line, "##start", 8))
+	{
+		get_next_line(0, &line);
+		if (line == NULL || is_box(line) == _ERROR_)
+			exit_lemin(lemin, _ERROR_);
+		ft_add_lstline(lemin->lstline, line);
+		lemin->start = add_box(lemin, line, &lemin->l_box);
+		ft_memdel((void **)&line);
+		return (_SUCCESS_);
+	}
+	else if (!ft_strncmp(line, "##end", 6))
+	{
+		get_next_line(0, &line);
+		if (line == NULL || is_box(line) == _ERROR_)
+			exit_lemin(lemin, _ERROR_);
+		ft_add_lstline(lemin->lstline, line);
+		lemin->end = add_box(lemin, line, &lemin->l_box);
+		ft_memdel((void **)&line);
+		return (_SUCCESS_);
+	}
+	return (_ERROR_);
 }
 
 static void		help_get_map(t_lemin *lemin, char *line)
@@ -48,16 +73,19 @@ static void		help_get_map(t_lemin *lemin, char *line)
 	int		ret;
 
 	ret = 1;
+	if (lemin->start < 0 || lemin->end < 0)
+		exit_lemin(lemin, _ERROR_);
 	while (ret > 0)
 	{
 		if (!ft_strncmp(line, "#", 1))
 			;
-		else if (is_pipe(line))
+		else if (is_pipe(line) == _SUCCESS_)
 			add_pipe(lemin, line, &lemin->l_pipe);
 		else
 			break;
 		ft_memdel((void **)&line);
 		ret = get_next_line(0, &line);
+		ft_add_lstline(lemin->lstline, line);
 	}
 	ft_memdel((void **)&line);
 }
@@ -69,14 +97,11 @@ static void		get_map(t_lemin *lemin)
 	line = NULL;
 	while (get_next_line(0, &line) > 0)
 	{
-		if (!ft_strncmp(line, "##start", 8))
-			lemin->start = add_box(lemin, &lemin->l_box);
-		else if (!ft_strncmp(line, "##end", 6))
-			lemin->end = add_box(lemin, &lemin->l_box);
+		ft_add_lstline(lemin->lstline, line);
+		if (get_start_end(lemin, line) == _SUCCESS_)
+			;
 		else if (is_box(line) == _SUCCESS_)
-		{
-			add_box(lemin, &lemin->l_box);
-		}
+			add_box(lemin, line, &lemin->l_box);
 		else if (!ft_strncmp(line, "#", 1))
 			;
 		else
@@ -94,7 +119,7 @@ int				main(void)
 	init_lemin(&lemin);
 	nb_lem(&lemin);
 	get_map(&lemin);
-
+	return (0);
 	t_lstline *lst;
 	lst = lemin.lstline;
 	while (lst)

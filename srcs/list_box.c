@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 12:14:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/24 16:00:12 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/25 13:13:42 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,14 @@ static int			check_duplicate_box(t_box *list, int nbox)
 	return (_SUCCESS_);
 }
 
-int					add_box(t_lemin *lemin, t_box **begin)
+int					add_box(t_lemin *lemin, char *line, t_box **begin)
 {
-	char	*line;
 	t_box	*list;
 	int		nbox;
 
-	line = NULL;
-	get_next_line(0, &line);
-	if (is_box(line) == _ERROR_ || line == NULL)
-		exit_lemin(lemin);
-	if (check_duplicate_box(*begin, nbox) == _ERROR_)
-		exit_lemin(lemin);
 	nbox = ft_atoi(line);
-	ft_memdel((void **)&line);
+	if (check_duplicate_box(*begin, nbox) == _ERROR_)
+		exit_lemin(lemin, _ERROR_);
 	if (*begin == NULL)
 		*begin = new_box(nbox);
 	else
