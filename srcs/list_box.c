@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 12:14:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/25 13:13:42 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/27 14:35:32 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static t_box		*new_box(int nbox)
 
 	box = (t_box *)ft_memalloc(sizeof(t_box));
 	box->nbox = nbox;
+	box->weight = _UNKNOW_;
+	box->back = _UNKNOW_;
 	box->next = NULL;
 	return (box);
 }

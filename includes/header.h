@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 12:10:11 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/25 11:30:35 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/27 14:35:05 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,16 @@
 
 # include "debug.h"
 
-# define	BOX1 0
-# define	BOX2 1
+# define	_UNKNOW_	-1
+
+# define	BOX1		0
+# define	BOX2		1
 
 typedef struct	s_box
 {
 	int				nbox;
+	int				weight;
+	int				back;
 	struct s_box	*next;
 }				t_box;
 
