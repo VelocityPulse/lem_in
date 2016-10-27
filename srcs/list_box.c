@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 12:14:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/27 14:35:32 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/27 16:00:35 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,15 @@ void				free_lbox(t_box **begin)
 		list = *begin;
 	}
 	*begin = NULL;
+}
+
+t_box				*get_box_index(t_box *list, int index)
+{
+	while (list)
+	{
+		if (list->nbox == index)
+			return (list);
+		list = list->next;
+	}
+	return (_ERROR_);
 }

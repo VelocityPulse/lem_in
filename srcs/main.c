@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 12:10:04 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/27 14:30:34 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/27 15:59:07 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,8 @@ int				main(void)
 	nb_lem(&lemin);
 	get_map(&lemin);
 	ft_print_lstline(lemin.lstline);
-
+	if (!process(&lemin))
+		exit_lemin(&lemin, _ERROR_);
 	exit_lemin(&lemin, _SUCCESS_);
 	return (0);
 }
