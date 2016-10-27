@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 12:10:11 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/27 14:35:05 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/27 14:59:41 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct	s_lemin
 	int			nb_lem;
 	int			start;
 	int			end;
+	t_box		*path;
 	t_pipe		*l_pipe;
 	t_box		*l_box;
 	t_lstline	*lstline;
