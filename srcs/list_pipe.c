@@ -6,19 +6,20 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 15:39:02 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/25 10:47:11 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/27 16:43:41 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/header.h"
 
-static t_pipe	*new_pipe(int box[2])
+static t_pipe	*new_pipe(int box[2], int pipe_id)
 {
 	t_pipe		*pipe;
 
 	pipe = (t_pipe *)ft_memalloc(sizeof(t_pipe));
 	pipe->box[0] = box[0];
 	pipe->box[1] = box[1];
+	pipe->pipe_id = pipe_id;
 	pipe->next = NULL;
 	return (pipe);
 }
@@ -51,13 +52,13 @@ void			add_pipe(t_lemin *lemin, char *line, t_pipe **begin)
 	if (check_duplicate_pipe(*begin, pipe) == _ERROR_)
 		exit_lemin(lemin, _ERROR_);
 	if (*begin == NULL)
-		*begin = new_pipe(pipe);
+		*begin = new_pipe(pipe, 1);
 	else
 	{
 		list = *begin;
 		while (list->next)
 			list = list->next;
-		list->next = new_pipe(pipe);
+		list->next = new_pipe(pipe, list->pipe_id + 1);
 	}
 }
 
@@ -73,4 +74,14 @@ void			free_lpipe(t_pipe **begin)
 		list = *begin;
 	}
 	*begin = NULL;
+}
+
+int		next_pipe(t_pipe *list, int current, int *id)
+{
+	while (list->) // tant qu'on a pas passer l'id
+
+
+	// si le pipe est adjacent, return.
+	// ne pas oublier d'incementer id
+	// sinon return _ERROR_
 }
