@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 15:39:02 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/27 16:43:41 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/28 11:54:52 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,24 @@ void			free_lpipe(t_pipe **begin)
 
 int		next_pipe(t_pipe *list, int current, int *id)
 {
-	while (list->) // tant qu'on a pas passer l'id
-
-
-	// si le pipe est adjacent, return.
-	// ne pas oublier d'incementer id
-	// sinon return _ERROR_
+	while (list && list->pipe_id < *id)
+		list = list->next;
+	while (list->next)
+	{
+		if (list->box[BOX1] == current)
+			return (list->box[BOX2]);
+		else if (list->box[BOX2] == current)
+			return (list->box[BOX1]);
+		list = list->next;
+		*id = list->pipe_id;
+	}
+	return (_ERROR_);
 }
+
+/*
+** next_pipe() :
+** make pipe in ID position
+** travel the pipe list until find an adjacent of 'current'
+** in the same time, modify the value of ID with the current id of pipe_list
+** return the number of adjacent or error
+*/
