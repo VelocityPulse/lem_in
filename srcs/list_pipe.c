@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 15:39:02 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/28 11:54:52 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/28 16:20:55 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,19 @@ int		next_pipe(t_pipe *list, int current, int *id)
 {
 	while (list && list->pipe_id < *id)
 		list = list->next;
-	while (list->next)
+	while (list)
 	{
 		if (list->box[BOX1] == current)
+		{
+			*id = list->pipe_id + 1;
 			return (list->box[BOX2]);
+		}
 		else if (list->box[BOX2] == current)
+		{
+			*id = list->pipe_id + 1;
 			return (list->box[BOX1]);
+		}
 		list = list->next;
-		*id = list->pipe_id;
 	}
 	return (_ERROR_);
 }

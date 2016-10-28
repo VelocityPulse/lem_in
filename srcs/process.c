@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 15:08:44 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/28 14:04:30 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/28 16:35:52 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,16 @@ static void		recursive_search(t_lemin *lemin, t_box *box, int weight)
 		lemin->end_weight = box->weight;
 		return ;
 	}
-	if (box->weight >= lemin->end_weight)
+	if (lemin->end_weight > 0 && box->weight >= lemin->end_weight)
 		return ;
 	while ((next_box_id = next_pipe(lemin->l_pipe, box->nbox, &pipe_id)))
 	{
 		next_box = get_box_index(lemin->l_box, next_box_id);
-		if (next_box->weight < weight)
+		if (next_box->weight == _UNKNOW_ || next_box->weight > weight)
 		{
 			next_box->weight = weight;
 			next_box->back = box->nbox;
-			recursive_search(lemin, next_box, weight++);
+			recursive_search(lemin, next_box, weight + 1);
 		}
 	}
 }
@@ -61,10 +61,20 @@ int			process(t_lemin *lemin)
 {
 	t_box	*box;
 
-	if (!(box = get_box_index(lemin->l_box, lemin->start)))
-		return (_ERROR_);
+	box = get_box_index(lemin->l_box, lemin->start);
 	box->weight = 0;
 	box->back = _UNKNOW_;
 	recursive_search(lemin, box, 1);
+	box = lemin->l_box;
+	while (box)
+	{
+		ft_printf("number box : %d - weigth = |%d|", box->nbox, box->weight);
+		ft_printf(" Parent : %d\n", box->back);
+		box = box->next;
+	}
+	TEST
+	if (box->weight == _UNKNOW_)
+		exit_lemin(lemin, _ERROR_);
+	lemin->l_path = make_path(lemin, lemin->l_box);
 	return (_SUCCESS_);
 }
