@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 12:10:11 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/28 12:05:39 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/28 14:24:39 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct	s_lemin
 	int			start;
 	int			end;
 	int			end_weight;
-	t_path		*path;
+	t_path		*l_path;
 	t_pipe		*l_pipe;
 	t_box		*l_box;
 	t_lstline	*lstline;
@@ -66,9 +66,13 @@ int				is_box(char *line);
 int				add_box(t_lemin *lemin, char *line, t_box **begin);
 t_box			*get_box_index(t_box *list, int index);
 void			free_lbox(t_box **begin);
+
 void			add_pipe(t_lemin *lemin, char *line, t_pipe **begin);
 int				next_pipe(t_pipe *list, int current, int *id);
 void			free_lpipe(t_pipe **begin);
+
+void			add_path_box(int nbox, t_path **end);
+void			free_path(t_path **begin);
 
 void			exit_lemin(t_lemin *lemin, int mode);
 

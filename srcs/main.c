@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 12:10:04 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/27 16:36:12 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/28 14:24:46 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void		init_lemin(t_lemin *l)
 	l->end_weight = _UNKNOW_;
 	l->l_pipe = NULL;
 	l->l_box = NULL;
+	l->l_path = NULL;
 	l->lstline = NULL;
 }
 
