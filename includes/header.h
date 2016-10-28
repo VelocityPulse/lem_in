@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 12:10:11 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/27 16:42:15 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/28 12:05:39 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_pipe
 typedef struct	s_path
 {
 	int				box;
+	int				lem;
 	struct s_path	*next;
 	struct s_path	*back;
 }				t_path;

@@ -6,11 +6,41 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 15:08:44 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/27 16:38:25 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/28 12:26:13 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/header.h"
+
+static t_path	*new_path_box(int nbox)
+{
+	t_path		*path_box;
+
+	path_box = (t_path *)ft_memalloc(sizeof(t_path));
+	path_box->box = nbox;
+	path_box->next = NULL;
+	path_box->back = NULL;
+	return (path_box);
+}
+
+static t_path	*make_path(t_lemin *lemin, t_box *lbox)
+{
+	t_path		*end;
+	t_path		*begin;
+	t_box		*box;
+
+	end = NULL;
+	box = get_box_index(lbox, lemin->end);
+	while (box->nbox != lemin->start)
+	{
+		add_box_path(box->nbox, &end);
+		box = get_box_index(lbox, box->back);
+	}
+	begin = end;
+	while (begin->back)
+		begin = begin->back;
+	return (begin);
+}
 
 static void		recursive_search(t_lemin *lemin, t_box *box, int weight)
 {
@@ -37,7 +67,6 @@ static void		recursive_search(t_lemin *lemin, t_box *box, int weight)
 		}
 	}
 }
-
 
 int			process(t_lemin *lemin)
 {
