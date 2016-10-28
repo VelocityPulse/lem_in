@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 15:39:02 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/28 16:20:55 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/28 16:47:44 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int		next_pipe(t_pipe *list, int current, int *id)
 		}
 		list = list->next;
 	}
-	return (_ERROR_);
+	return (-1);
 }
 
 /*

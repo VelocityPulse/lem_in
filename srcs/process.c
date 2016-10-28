@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 15:08:44 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/28 16:35:52 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/28 16:51:15 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ static void		recursive_search(t_lemin *lemin, t_box *box, int weight)
 	}
 	if (lemin->end_weight > 0 && box->weight >= lemin->end_weight)
 		return ;
-	while ((next_box_id = next_pipe(lemin->l_pipe, box->nbox, &pipe_id)))
+	while (!((next_box_id = next_pipe(
+			lemin->l_pipe, box->nbox, &pipe_id)) == -1))
 	{
 		next_box = get_box_index(lemin->l_box, next_box_id);
 		if (next_box->weight == _UNKNOW_ || next_box->weight > weight)
