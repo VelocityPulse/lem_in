@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 12:10:11 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/28 14:24:39 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/28 14:30:07 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int				next_pipe(t_pipe *list, int current, int *id);
 void			free_lpipe(t_pipe **begin);
 
 void			add_path_box(int nbox, t_path **end);
-void			free_path(t_path **begin);
+void			free_lpath(t_path **begin);
 
 void			exit_lemin(t_lemin *lemin, int mode);
 

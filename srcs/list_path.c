@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/28 13:48:01 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/28 14:14:50 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/28 14:30:32 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void			add_path_box(int nbox, t_path **end)
 	}
 }
 
-void			free_path(t_path **list)
+void			free_lpath(t_path **list)
 {
 	t_path		*temp;
 
