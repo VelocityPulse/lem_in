@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 15:08:44 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/28 16:51:15 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/29 11:53:36 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ static void		recursive_search(t_lemin *lemin, t_box *box, int weight)
 	}
 	if (lemin->end_weight > 0 && box->weight >= lemin->end_weight)
 		return ;
-	while (!((next_box_id = next_pipe(
-			lemin->l_pipe, box->nbox, &pipe_id)) == -1))
+	while (!((next_box_id = next_pipe(lemin->l_pipe, box->nbox, &pipe_id)) == -1))
 	{
 		next_box = get_box_index(lemin->l_box, next_box_id);
 		if (next_box->weight == _UNKNOW_ || next_box->weight > weight)
@@ -67,13 +66,6 @@ int			process(t_lemin *lemin)
 	box->back = _UNKNOW_;
 	recursive_search(lemin, box, 1);
 	box = lemin->l_box;
-	while (box)
-	{
-		ft_printf("number box : %d - weigth = |%d|", box->nbox, box->weight);
-		ft_printf(" Parent : %d\n", box->back);
-		box = box->next;
-	}
-	TEST
 	if (box->weight == _UNKNOW_)
 		exit_lemin(lemin, _ERROR_);
 	lemin->l_path = make_path(lemin, lemin->l_box);
