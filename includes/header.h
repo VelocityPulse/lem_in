@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 12:10:11 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/28 14:30:07 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/29 12:17:46 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,10 @@ typedef struct	s_pipe
 typedef struct	s_path
 {
 	int				box;
-	int				lem;
+	int				lem_id;
 	struct s_path	*next;
 	struct s_path	*back;
+	struct s_path	*end;
 }				t_path;
 
 typedef struct	s_lemin
@@ -59,6 +60,7 @@ typedef struct	s_lemin
 }				t_lemin;
 
 int				process(t_lemin *lemin);
+void			parse(t_lemin *lemin);
 
 int				is_pipe(char *line);
 int				is_box(char *line);
@@ -75,7 +77,5 @@ void			add_path_box(int nbox, t_path **end);
 void			free_lpath(t_path **begin);
 
 void			exit_lemin(t_lemin *lemin, int mode);
-
-
 
 #endif
