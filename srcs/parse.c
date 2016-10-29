@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 11:56:22 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/29 14:13:42 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/29 14:18:44 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static int		push_lem(t_path *list, int lem_id)
 {
 	if (lem_id == _UNKNOW_ && list->lem_id == _UNKNOW_)
 		return (_ERROR_);
-	while (list->back && list->lem_id == _UNKNOW_ && list->back->lem_id == _UNKNOW_)
+	while (list->back && list->lem_id == _UNKNOW_ &&
+			list->back->lem_id == _UNKNOW_)
 		list = list->back;
 	if (list->back == NULL)
 	{
@@ -50,9 +51,9 @@ void			parse(t_lemin *lemin)
 	lem = 0;
 	while (lem++ < lemin->nb_lem)
 	{
-		push_lem(lemin->l_path->end, lem);
-		print_path(lemin->l_path->end);
+		push_lem(lemin->l_path, lem);
+		print_path(lemin->l_path);
 	}
-	while (push_lem(lemin->l_path->end, -1))
-		print_path(lemin->l_path->end);
+	while (push_lem(lemin->l_path, -1))
+		print_path(lemin->l_path);
 }

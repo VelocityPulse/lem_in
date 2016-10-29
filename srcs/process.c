@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 15:08:44 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/29 11:53:36 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/29 14:15:58 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static t_path	*make_path(t_lemin *lemin, t_box *lbox)
 {
 	t_path		*end;
-	t_path		*begin;
 	t_box		*box;
 
 	end = NULL;
@@ -25,10 +24,7 @@ static t_path	*make_path(t_lemin *lemin, t_box *lbox)
 		add_path_box(box->nbox, &end);
 		box = get_box_index(lbox, box->back);
 	}
-	begin = end;
-	while (begin->back)
-		begin = begin->back;
-	return (begin);
+	return (end);
 }
 
 static void		recursive_search(t_lemin *lemin, t_box *box, int weight)
