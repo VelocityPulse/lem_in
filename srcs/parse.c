@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 11:56:22 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/29 14:18:44 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/10/29 14:34:11 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ static int		push_lem(t_path *list, int lem_id)
 
 static void		print_path(t_path *path)
 {
+	write(1, "\n", 1);
 	while (path)
 	{
 		if (path->lem_id != _UNKNOW_)
 			ft_printf("L%d-%d ", path->lem_id, path->box);
 		path = path->back;
 	}
-	write(1, "\n", 1);
 }
 
 void			parse(t_lemin *lemin)
