@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 15:08:44 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/29 14:15:58 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/02 13:03:00 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			process(t_lemin *lemin)
 	box->weight = 0;
 	box->back = _UNKNOW_;
 	recursive_search(lemin, box, 1);
-	box = lemin->l_box;
+	box = get_box_index(lemin->l_box, lemin->end);
 	if (box->weight == _UNKNOW_)
 		exit_lemin(lemin, _ERROR_);
 	lemin->l_path = make_path(lemin, lemin->l_box);
