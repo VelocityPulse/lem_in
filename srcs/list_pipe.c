@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 15:39:02 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/28 16:47:44 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/02 13:14:43 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,31 @@ static t_pipe	*new_pipe(int box[2], int pipe_id)
 	return (pipe);
 }
 
-static int		check_duplicate_pipe(t_pipe *list, int pipe[2])
+static int		check_valid_pipe(t_pipe *listp, t_box *listb, int pipe[2])
 {
-	while (list)
+	int		match;
+
+	match = _UNKNOW_;
+	while (listp)
 	{
-		if (list->box[0] == pipe[0] && list->box[1] == pipe[1])
+		if (listp->box[BOX1] == pipe[BOX1] && listp->box[BOX2] == pipe[BOX2])
 			return (_ERROR_);
-		if (list->box[0] == pipe[1] && list->box[1] == pipe[0])
+		if (listp->box[BOX1] == pipe[BOX2] && listp->box[BOX2] == pipe[BOX1])
 			return (_ERROR_);
-		list = list->next;
+		listp = listp->next;
 	}
-	return (_SUCCESS_);
+	while (listb)
+	{
+		if (listb->nbox == pipe[BOX1] || listb->nbox == pipe[BOX2])
+		{
+			if (match == 1)
+				return (_SUCCESS_);
+			else
+				match = 1;
+		}
+		listb = listb->next;
+	}
+	return (_ERROR_);
 }
 
 void			add_pipe(t_lemin *lemin, char *line, t_pipe **begin)
@@ -49,7 +63,7 @@ void			add_pipe(t_lemin *lemin, char *line, t_pipe **begin)
 	ft_memdel2((void ***)&str);
 	if (pipe[0] == pipe[1])
 		exit_lemin(lemin, _ERROR_);
-	if (check_duplicate_pipe(*begin, pipe) == _ERROR_)
+	if (check_valid_pipe(*begin, lemin->l_box, pipe) == _ERROR_)
 		exit_lemin(lemin, _ERROR_);
 	if (*begin == NULL)
 		*begin = new_pipe(pipe, 1);
