@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 12:10:04 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/29 14:33:30 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/02 11:51:56 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static void		nb_lem(t_lemin *lemin)
 		if (ft_strisdigit(line) == 1 && ft_strlen(line) > 0)
 		{
 			lemin->nb_lem = ft_atoi(line);
+			if (lemin->nb_lem <= 0)
+				exit_lemin(lemin, _ERROR_);
 			ft_add_lstline(&lemin->lstline, line);
 			break;
 		}
