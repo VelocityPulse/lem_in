@@ -6,7 +6,7 @@
 #    By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/21 12:14:25 by cchameyr          #+#    #+#              #
-#    Updated: 2016/10/29 14:45:06 by cchameyr         ###   ########.fr        #
+#    Updated: 2016/11/02 13:17:47 by cchameyr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ NAME =				lem-in
 
 LIBFT =				libft/libft.a
 
-DEBUGSEGFAULT =		-fsanitize=address
+DEBUGSEGFAULT =		-g3 -fsanitize=address
 
 FLAGS =				-Wall -Wextra -Werror #$(DEBUGSEGFAULT)
 
