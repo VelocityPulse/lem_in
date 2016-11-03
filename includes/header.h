@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 12:10:11 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/11/03 11:44:22 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/03 13:02:57 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,11 @@
 
 # define	_UNKNOW_	-1
 
-# define	BOX1		0
-# define	BOX2		1
-
 typedef struct	s_box
 {
 	char			*name;
 	int				weight;
-	int				back;
+	char			*back;
 	struct s_box	*next;
 }				t_box;
 
@@ -40,7 +37,7 @@ typedef struct	s_pipe
 
 typedef struct	s_path
 {
-	int				box;
+	char			*box;
 	int				lem_id;
 	struct s_path	*next;
 	struct s_path	*back;
@@ -70,10 +67,10 @@ t_box			*get_box_index(t_box *list, char *name);
 void			free_lbox(t_box **begin);
 
 void			add_pipe(t_lemin *lemin, char *line, t_pipe **begin);
-int				next_pipe(t_pipe *list, int current, int *id);
+char			*next_pipe(t_pipe *list, char *name, int *id);
 void			free_lpipe(t_pipe **begin);
 
-void			add_path_box(int nbox, t_path **end);
+void			add_path_box(char *name, t_path **end);
 void			free_lpath(t_path **begin);
 
 void			exit_lemin(t_lemin *lemin, int mode);

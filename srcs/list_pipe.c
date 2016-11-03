@@ -6,13 +6,13 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 15:39:02 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/11/03 11:45:42 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/03 12:59:07 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/header.h"
 
-static t_pipe	*new_pipe(int box[2], int pipe_id)
+static t_pipe	*new_pipe(char *box[2], int pipe_id)
 {
 	t_pipe		*pipe;
 
@@ -24,29 +24,31 @@ static t_pipe	*new_pipe(int box[2], int pipe_id)
 	return (pipe);
 }
 
-static int		check_valid_pipe(t_pipe *listp, t_box *listb, int pipe[2])
+static int		check_valid_pipe(t_pipe *lp, t_box *lb, char *pipe[2])
 {
 	int		match;
 
 	match = _UNKNOW_;
-	while (listp)
+	while (lp)
 	{
-		if (listp->box[BOX1] == pipe[BOX1] && listp->box[BOX2] == pipe[BOX2])
+		if (!ft_strcmp(lp->box[0], pipe[0]) &&
+				!ft_strcmp(lp->box[1], pipe[1]))
 			return (_ERROR_);
-		if (listp->box[BOX1] == pipe[BOX2] && listp->box[BOX2] == pipe[BOX1])
+		if (!ft_strcmp(lp->box[0], pipe[1]) &&
+				!ft_strcmp(lp->box[1], pipe[0]))
 			return (_ERROR_);
-		listp = listp->next;
+		lp = lp->next;
 	}
-	while (listb)
+	while (lb)
 	{
-		if (listb->nbox == pipe[BOX1] || listb->nbox == pipe[BOX2])
+		if (!ft_strcmp(lb->name, pipe[0]) || !ft_strcmp(lb->name, pipe[1]))
 		{
 			if (match == 1)
 				return (_SUCCESS_);
 			else
 				match = 1;
 		}
-		listb = listb->next;
+		lb = lb->next;
 	}
 	return (_ERROR_);
 }
@@ -55,15 +57,19 @@ void			add_pipe(t_lemin *lemin, char *line, t_pipe **begin)
 {
 	t_pipe		*list;
 	char		**str;
-	int			pipe[2];
+	char		*pipe[2];
 
 	str = ft_strsplit(line, '-');
-	pipe[0] = ft_atoi(str[0]);
-	pipe[1] = ft_atoi(str[1]);
-	ft_memdel2((void ***)&str);
-	if (pipe[0] == pipe[1])
+	if (ft_memlen((void **)str) != 2)
+	{
+		ft_memdel2((void ***)&str);
 		exit_lemin(lemin, _ERROR_);
-	if (check_valid_pipe(*begin, lemin->l_box, pipe) == _ERROR_)
+	}
+	pipe[0] = ft_strdup(str[0]);
+	pipe[1] = ft_strdup(str[1]);
+	ft_memdel2((void ***)&str);
+	if (!ft_strcmp(pipe[0], pipe[1]) ||
+			!check_valid_pipe(*begin, lemin->l_box, pipe))
 		exit_lemin(lemin, _ERROR_);
 	if (*begin == NULL)
 		*begin = new_pipe(pipe, 1);
@@ -84,31 +90,33 @@ void			free_lpipe(t_pipe **begin)
 	while (list)
 	{
 		*begin = list->next;
+		ft_memdel((void **)&list->box[0]);
+		ft_memdel((void **)&list->box[1]);
 		ft_memdel((void **)&list);
 		list = *begin;
 	}
 	*begin = NULL;
 }
 
-int		next_pipe(t_pipe *list, int current, int *id)
+char	*next_pipe(t_pipe *list, char *name, int *id)
 {
 	while (list && list->pipe_id < *id)
 		list = list->next;
 	while (list)
 	{
-		if (list->box[BOX1] == current)
+		if (!ft_strcmp(list->box[0], name))
 		{
 			*id = list->pipe_id + 1;
-			return (list->box[BOX2]);
+			return (list->box[1]);
 		}
-		else if (list->box[BOX2] == current)
+		else if (!ft_strcmp(list->box[1], name))
 		{
 			*id = list->pipe_id + 1;
-			return (list->box[BOX1]);
+			return (list->box[0]);
 		}
 		list = list->next;
 	}
-	return (-1);
+	return (NULL);
 }
 
 /*

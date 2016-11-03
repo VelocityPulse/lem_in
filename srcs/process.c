@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 15:08:44 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/11/02 13:03:00 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/03 13:04:55 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static t_path	*make_path(t_lemin *lemin, t_box *lbox)
 
 	end = NULL;
 	box = get_box_index(lbox, lemin->end);
-	while (box->nbox != lemin->start)
+	while (ft_strcmp(box->name, lemin->start))
 	{
-		add_path_box(box->nbox, &end);
+		add_path_box(box->name, &end);
 		box = get_box_index(lbox, box->back);
 	}
 	return (end);
@@ -30,24 +30,24 @@ static t_path	*make_path(t_lemin *lemin, t_box *lbox)
 static void		recursive_search(t_lemin *lemin, t_box *box, int weight)
 {
 	int		pipe_id;
-	int		next_box_id;
+	char	*next_box_id;
 	t_box	*next_box;
 
 	pipe_id = -1;
-	if (box->nbox == lemin->end)
+	if (!ft_strcmp(box->name, lemin->end))
 	{
 		lemin->end_weight = box->weight;
 		return ;
 	}
 	if (lemin->end_weight > 0 && box->weight >= lemin->end_weight)
 		return ;
-	while (!((next_box_id = next_pipe(lemin->l_pipe, box->nbox, &pipe_id)) == -1))
+	while ((next_box_id = next_pipe(lemin->l_pipe, box->name, &pipe_id)))
 	{
 		next_box = get_box_index(lemin->l_box, next_box_id);
 		if (next_box->weight == _UNKNOW_ || next_box->weight > weight)
 		{
 			next_box->weight = weight;
-			next_box->back = box->nbox;
+			next_box->back = box->name;
 			recursive_search(lemin, next_box, weight + 1);
 		}
 	}
@@ -59,7 +59,7 @@ int			process(t_lemin *lemin)
 
 	box = get_box_index(lemin->l_box, lemin->start);
 	box->weight = 0;
-	box->back = _UNKNOW_;
+	box->back = NULL;
 	recursive_search(lemin, box, 1);
 	box = get_box_index(lemin->l_box, lemin->end);
 	if (box->weight == _UNKNOW_)
