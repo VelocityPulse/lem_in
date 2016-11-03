@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 15:15:46 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/25 15:51:06 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/03 11:17:06 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,10 @@ int				is_pipe(char *line)
 	part = 1;
 	i = -1;
 	if (ft_strlen(line) == 0)
-	{
 		return (_ERROR_);
-	}
 	while (line[++i])
 	{
-		if (ft_isdigit(line[i]))
+		if (ft_isalnum(line[i]) == _SUCCESS_)
 			;
 		else if (line[i] == '-')
 		{
@@ -39,41 +37,26 @@ int				is_pipe(char *line)
 	return (_SUCCESS_);
 }
 
-static int		help_is_box(char *line)
+int				is_box(char *line)
 {
+	int		i;
+	int		part;
 	char	**str;
 
+	part = 1;
+	i = -1;
 	str = ft_strsplit(line, ' ');
 	if (ft_memlen((void **)str) != 3)
 	{
 		ft_memdel2((void ***)&str);
 		return (_ERROR_);
 	}
-	ft_memdel2((void ***)&str);
-	return (_SUCCESS_);
-}
-
-int				is_box(char *line)
-{
-	int		i;
-	int		part;
-
-	part = 1;
-	i = -1;
-	if (help_is_box(line) == _ERROR_)
-		return (_ERROR_);
-	while (line[++i])
+	if (str[0][0] == 'L' || ft_strisdigit(str[1]) == _ERROR_ ||
+			ft_strisdigit(str[2]) == _ERROR_)
 	{
-		if (ft_isdigit(line[i]))
-			;
-		else if (line[i] == ' ')
-		{
-			part++;
-			if (part > 3)
-				return (_ERROR_);
-		}
-		else
-			return (_ERROR_);
+		ft_memdel2((void ***)&str);
+		return (_ERROR_);
 	}
+	ft_memdel2((void ***)&str);
 	return (_SUCCESS_);
 }

@@ -6,53 +6,56 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 12:14:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/10/27 16:00:35 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/03 11:36:55 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/header.h"
 
-static t_box		*new_box(int nbox)
+static t_box		*new_box(char *name)
 {
 	t_box		*box;
 
 	box = (t_box *)ft_memalloc(sizeof(t_box));
-	box->nbox = nbox;
+	box->name = name;
 	box->weight = _UNKNOW_;
 	box->back = _UNKNOW_;
 	box->next = NULL;
 	return (box);
 }
 
-static int			check_duplicate_box(t_box *list, int nbox)
+static int			check_duplicate_box(t_box *list, char *name)
 {
 	while (list)
 	{
-		if  (list->nbox == nbox)
+		if  (ft_strcmp(list->name, name) != 0)
 			return (_ERROR_);
 		list = list->next;
 	}
 	return (_SUCCESS_);
 }
 
-int					add_box(t_lemin *lemin, char *line, t_box **begin)
+char				*add_box(t_lemin *lemin, char *line, t_box **begin)
 {
 	t_box	*list;
-	int		nbox;
+	char	**str;
+	char	*name;
 
-	nbox = ft_atoi(line);
-	if (check_duplicate_box(*begin, nbox) == _ERROR_)
+	str = ft_strsplit(line, ' ');
+	name = ft_strdup(str[0]);
+	ft_memdel2((void ***)&str);
+	if (check_duplicate_box(*begin, name) == _ERROR_)
 		exit_lemin(lemin, _ERROR_);
 	if (*begin == NULL)
-		*begin = new_box(nbox);
+		*begin = new_box(name);
 	else
 	{
 		list = *begin;
 		while (list->next)
 			list = list->next;
-		list->next = new_box(nbox);
+		list->next = new_box(name);
 	}
-	return (nbox);
+	return (name);
 }
 
 void				free_lbox(t_box **begin)
@@ -69,11 +72,11 @@ void				free_lbox(t_box **begin)
 	*begin = NULL;
 }
 
-t_box				*get_box_index(t_box *list, int index)
+t_box				*get_box_index(t_box *list, char *name)
 {
 	while (list)
 	{
-		if (list->nbox == index)
+		if (!ft_strcmp(list->name, name))
 			return (list);
 		list = list->next;
 	}
