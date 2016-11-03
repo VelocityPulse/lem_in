@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 12:10:11 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/11/03 13:02:57 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/03 14:24:18 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char			*add_box(t_lemin *lemin, char *line, t_box **begin);
 t_box			*get_box_index(t_box *list, char *name);
 void			free_lbox(t_box **begin);
 
-void			add_pipe(t_lemin *lemin, char *line, t_pipe **begin);
+void			add_pipe(t_lemin *lemin, char *l, t_pipe **begin);
 char			*next_pipe(t_pipe *list, char *name, int *id);
 void			free_lpipe(t_pipe **begin);
 
