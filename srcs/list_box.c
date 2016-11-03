@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 12:14:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/11/03 13:38:17 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/03 14:17:39 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ char				*add_box(t_lemin *lemin, char *line, t_box **begin)
 	char	**str;
 	char	*name;
 
+	if (ft_strchr(&line[ft_strlen(line) - 1], ' '))
+		exit_lemin(lemin, _ERROR_);
 	str = ft_strsplit(line, ' ');
 	name = ft_strdup(str[0]);
 	ft_memdel2((void ***)&str);
