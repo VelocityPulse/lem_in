@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 10:41:26 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/11/08 10:41:29 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/08 10:50:39 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # include "debug.h"
 
-# define	_UNKNOW_	-1
+# define _UNKNOW_	-1
 
 typedef struct	s_box
 {
