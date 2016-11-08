@@ -6,7 +6,7 @@
 #    By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/21 12:14:25 by cchameyr          #+#    #+#              #
-#    Updated: 2016/11/02 13:17:47 by cchameyr         ###   ########.fr        #
+#    Updated: 2016/11/08 10:33:03 by cchameyr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ FILES =				main.c \
 					list_path.c \
 					exit_lemin.c \
 					process.c \
-					parse.c
+					parse.c \
+					init_lemin.c
 
 SRCS =				$(addprefix srcs/, $(FILES))
 

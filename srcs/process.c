@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 15:08:44 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/11/03 13:04:55 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/08 10:38:42 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void		recursive_search(t_lemin *lemin, t_box *box, int weight)
 	}
 }
 
-int			process(t_lemin *lemin)
+int				process(t_lemin *lemin)
 {
 	t_box	*box;
 

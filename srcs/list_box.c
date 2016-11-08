@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 12:14:31 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/11/03 14:17:39 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/08 10:39:43 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int			check_duplicate_box(t_box *list, char *name)
 {
 	while (list)
 	{
-		if  (!ft_strcmp(list->name, name))
+		if (!ft_strcmp(list->name, name))
 			return (_ERROR_);
 		list = list->next;
 	}

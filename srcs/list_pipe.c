@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 15:39:02 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/11/03 14:00:56 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/08 10:28:21 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void			free_lpipe(t_pipe **begin)
 	*begin = NULL;
 }
 
-char	*next_pipe(t_pipe *list, char *name, int *id)
+char			*next_pipe(t_pipe *list, char *name, int *id)
 {
 	while (list && list->pipe_id < *id)
 		list = list->next;

@@ -6,23 +6,11 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 12:10:04 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/11/03 14:51:31 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/08 10:35:54 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/header.h"
-
-static void		init_lemin(t_lemin *l)
-{
-	l->nb_lem = _UNKNOW_;
-	l->start = NULL;
-	l->end = NULL;
-	l->end_weight = _UNKNOW_;
-	l->l_pipe = NULL;
-	l->l_box = NULL;
-	l->l_path = NULL;
-	l->lstline = NULL;
-}
 
 static void		nb_lem(t_lemin *lemin)
 {
@@ -37,7 +25,7 @@ static void		nb_lem(t_lemin *lemin)
 			if (lemin->nb_lem <= 0)
 				exit_lemin(lemin, _ERROR_);
 			ft_add_lstline(&lemin->lstline, line);
-			break;
+			break ;
 		}
 		else if (!ft_strncmp(line, "#", 1) && line[1] != '#')
 			;
@@ -84,7 +72,7 @@ static void		help_get_map(t_lemin *lemin, char *line)
 		else if (is_pipe(line) == _SUCCESS_)
 			add_pipe(lemin, line, &lemin->l_pipe);
 		else
-			break;
+			break ;
 		ret = get_next_line(0, &line);
 		ft_add_lstline(&lemin->lstline, line);
 	}
@@ -105,7 +93,7 @@ static void		get_map(t_lemin *lemin)
 		else if (!ft_strncmp(line, "#", 1))
 			;
 		else
-			break;
+			break ;
 	}
 	help_get_map(lemin, line);
 }
