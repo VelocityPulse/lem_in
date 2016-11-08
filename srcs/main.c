@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 12:10:04 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/11/08 10:35:54 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/08 13:09:46 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ static void		help_get_map(t_lemin *lemin, char *line)
 		else if (is_pipe(line) == _SUCCESS_)
 			add_pipe(lemin, line, &lemin->l_pipe);
 		else
+		{
+			ft_printf("line : |%s|\n", line);
 			break ;
+		}
 		ret = get_next_line(0, &line);
 		ft_add_lstline(&lemin->lstline, line);
 	}
@@ -106,6 +109,8 @@ int				main(void)
 	nb_lem(&lemin);
 	get_map(&lemin);
 	ft_supp_lstline(&lemin.lstline);
+	if (!basic_test(&lemin))
+		exit_lemin(&lemin, _ERROR_);
 	if (!process(&lemin))
 		exit_lemin(&lemin, _ERROR_);
 	ft_print_lstline(lemin.lstline);
