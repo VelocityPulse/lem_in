@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 10:41:26 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/11/08 13:10:25 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/09 17:37:26 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ typedef struct	s_lemin
 	t_lstline	*lstline;
 }				t_lemin;
 
-void			init_lemin(t_lemin *l);
-int				basic_test(t_lemin *l);
+void			init_lemin(t_lemin *lemin);
 int				process(t_lemin *lemin);
 void			parse(t_lemin *lemin);
 
