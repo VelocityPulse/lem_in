@@ -6,7 +6,7 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/21 12:10:04 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/11/09 17:38:47 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/09 18:40:44 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ static void		help_get_map(t_lemin *lemin, char *line)
 	int		ret;
 
 	ret = 1;
-	if (lemin->start < 0 || lemin->end < 0)
-		exit_lemin(lemin, _ERROR_);
 	while (ret > 0)
 	{
 		if (!ft_strncmp(line, "#", 1))

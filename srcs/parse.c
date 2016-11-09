@@ -6,15 +6,26 @@
 /*   By: cchameyr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/29 11:56:22 by cchameyr          #+#    #+#             */
-/*   Updated: 2016/11/03 13:39:31 by cchameyr         ###   ########.fr       */
+/*   Updated: 2016/11/09 18:56:39 by cchameyr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/header.h"
 
+static int		must_continue(t_path *path)
+{
+	while (path)
+	{
+		if (path->lem_id != _UNKNOW_)
+			return (_SUCCESS_);
+		path = path->back;
+	}
+	return (_ERROR_);
+}
+
 static int		push_lem(t_path *list, int lem_id)
 {
-	if (lem_id == _UNKNOW_ && list->lem_id == _UNKNOW_)
+	if (lem_id == _UNKNOW_ && !must_continue(list))
 		return (_ERROR_);
 	while (list->back && list->lem_id == _UNKNOW_ &&
 			list->back->lem_id == _UNKNOW_)
